@@ -6,15 +6,12 @@ public class Main {
         int size = 10_000;
         List<Integer> numb = new ArrayList<>(size);
 
-
         Random fun = new Random();
 
         for(int i = 0; i < size; i++){
 
             numb.add(fun.nextInt(100));
-
         }
-
         long startSeq = System.currentTimeMillis();
         int sum1 = numb.stream()
                 .map(n -> n*2)
@@ -30,10 +27,7 @@ public class Main {
                 .sum();
         long endPara = System.currentTimeMillis();
 
-        System.out.println(sum1 + " : " + (endSeq - startSeq));
-        System.out.println(sum2 + " : " + (endPara - startPara));
-
-
-
+        System.out.println(sum1 + " Stream : " + (endSeq - startSeq));
+        System.out.println(sum2 + " ParallelStream : " + (endPara - startPara));
     }
 }
