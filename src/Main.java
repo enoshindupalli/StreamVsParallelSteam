@@ -14,7 +14,14 @@ public class Main {
         }
         long startSeq = System.currentTimeMillis();
         int sum1 = numb.stream()
-                .map(n -> n*2)
+                .map(n -> {
+                    try {
+                        Thread.sleep(1);
+                    }catch (Exception e){
+
+                    }
+                    return n*2;
+                })
                 .mapToInt(n -> n)
                 .sum();
         long endSeq = System.currentTimeMillis();
@@ -22,12 +29,19 @@ public class Main {
 
         long startPara = System.currentTimeMillis();
         int sum2 = numb.parallelStream()
-                .map(n -> n*2)
+                .map(n -> {
+                    try {
+                        Thread.sleep(1);
+                    }catch (Exception e){
+
+                    }
+                    return n*2;
+                })
                 .mapToInt(n -> n)
                 .sum();
         long endPara = System.currentTimeMillis();
 
-        System.out.println(sum1 + " Stream : " + (endSeq - startSeq));
-        System.out.println(sum2 + " ParallelStream : " + (endPara - startPara));
+        System.out.println("Stream : " + (endSeq - startSeq));
+        System.out.println("ParallelStream : " + (endPara - startPara));
     }
 }
